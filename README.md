@@ -26,4 +26,25 @@ Breakdown:
 These build instructions only needs the `COPY` function to transfer the default workspace from the repo into the container.
 
 ### Dockerfile-Fetch
-This file
+This file utilizes the `fetch.sh` file which requires a few parameters that are provided as ENV in the Dockerfile:
+``` Dockerfile
+ENV WORKSPACE dev
+ENV WORKSPACE_DIR /workspaces
+ENV FQWN ${WORKSPACE_DIR}/${WORKSPACE}
+WORKDIR ${WORKSPACE_DIR}
+COPY . .
+RUN bash fetch.sh
+WORKDIR /
+```
+Breakdown:
+* `ENV` the folders in this repo such as 'default' and 'dev' need to be placed into the directory `/workspaces` in the container.
+* `ENV FQWN` is the EXACT location of the workspace which is used to make the spec directory and fill it with OAS.
+* `WORKDIR` we need to move the pwd of the container user to the `/workspaces` folder to execute the fetch
+* `RUN` in addition to the RUN command that installs the Portal CLI Tool we need to run this Bash script to pull in OAS specs.
+
+## Github Actions
+### STANDARD
+This action listens for a push to this branch with a comment containing the text `[release]` and then facilitates building the `Dockerfile-Standard` and running it. You can view the output of all commands in this action in the details of the job.
+
+### FETCH
+This action listens for dispatch from the run button on the Actions tab in this repo and then facilitates building the `Dockerfile-Fetch` and running it. You can view the output of all commands in this action in the details of the job.
