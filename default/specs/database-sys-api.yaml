@@ -1,0 +1,69 @@
+openapi: 3.0.0
+info:
+  description: A database resource API
+  version: "1.0.0"
+  title: database-sys-api
+paths:
+  /:
+    get: 
+      summary: Get all databases
+      description: |
+        Get a JSON array of all databases and some information about the metadata.
+      responses:  
+        200:
+          description: A JSON array of database objects
+          content:
+            application/json:
+              schema:
+                type: array
+        500:
+          description: Internal server error
+  /{databaseName}:
+    parameters:
+      - $ref: '#/components/parameters/databaseName'
+    get:
+      summary: Get tables attached to a database
+      description: |
+        Get a JSON array with objects being each table and some information about that table.
+      responses:
+        200:
+          description: A JSON array of table objects
+          content:
+            application/json:
+              schema:
+                type: array
+        500:
+          description: Internal server error
+  /{databaseName}/{tableName}:
+    parameters:
+      - $ref: '#/components/parameters/databaseName'
+      - $ref: '#/components/parameters/tableName'
+    get:
+      summary: Get all entries in a table
+      description: |
+        Get a JSON array with objects being each entry in a table. All values in the Object are strings.
+      responses:
+        200:
+          description: A JSON array of entires
+          content:
+            application/json:
+              schema:
+                type: array
+        500:
+          description: Internal server error
+components:
+  parameters:
+    databaseName:
+      name: databaseName
+      in: path
+      description: The name of the database
+      required: true
+      schema:
+        type: string
+    tableName:
+      name: tableName
+      in: path
+      description: The name of the table
+      required: true
+      schema:
+        type: string
