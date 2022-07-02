@@ -1,0 +1,44 @@
+name: Kong Portal
+app_version: 44b7b4e
+theme:
+  name: base
+redirect:
+  unauthenticated: login
+  unauthorized: unauthorized
+  login: dashboard
+  logout: ''
+  pending_approval: ''
+  pending_email_verification: ''
+menu:
+  - title: Catalog
+    url: documentation
+    needs_auth: false
+  - title: My Apps
+    url: applications
+    needs_auth: true
+  - dynamic_title: user.get("email")
+    url: settings
+    needs_auth: true
+    sub_menu:
+      - title: Dashboard
+        url: dashboard
+        needs_auth: true
+      - title: Logout
+        url: logout
+        needs_auth: true
+  - title: Login
+    url: login
+    needs_auth: false
+    hide_when_authenticated: true
+  - title: Sign up
+    url: register
+    needs_auth: false
+    hide_when_authenticated: true
+    css_classes:
+      - nav-button
+      - btn
+      - btn-secondary
+menu_no_auth:
+  - title: Catalog
+    url: documentation
+    needs_auth: false

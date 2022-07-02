@@ -1,0 +1,14 @@
+FROM node:12-alpine
+
+RUN npm install -g kong-portal-cli && apk --no-cache add curl bash
+ENV WORKSPACE dev
+ENV WORKSPACE_DIR /workspaces
+ENV FQWN ${WORKSPACE_DIR}/${WORKSPACE}
+
+WORKDIR ${WORKSPACE_DIR}
+COPY . .
+RUN bash fetch.sh
+WORKDIR /
+
+ENTRYPOINT ["portal"]
+CMD ["deploy","${WORKSPACE}"]
