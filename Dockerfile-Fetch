@@ -11,4 +11,4 @@ RUN bash fetch.sh
 WORKDIR /
 
 ENTRYPOINT ["portal"]
-CMD ["deploy","${WORKSPACE}"]
+CMD ["deploy","dev"]
