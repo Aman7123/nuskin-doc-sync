@@ -4,7 +4,8 @@ OUTPUT_LOCATION=/specs
 RESOURCES=(
     "https://raw.githubusercontent.com/Aman7123/image-sys-api-ac/main/src/generated/api/image-sys-api.yaml"
     "https://raw.githubusercontent.com/Aman7123/rarity-sys-api-ac/main/src/generated/api/rarity-sys-api.yaml")
-
+# Create folders if not exist
+mkdir -p $FQWN$OUTPUT_LOCATION
 # Loop through the array
 for i in "${RESOURCES[@]}"
     do
