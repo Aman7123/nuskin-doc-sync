@@ -1,10 +1,25 @@
 ### Syncing Portal Documents With Kong
 ---
 
+### Table of Contents
+* [Descriptions](#Descriptions)
+* Diagrams
+  * [Standard Portal API](#Standard-Portal-API-Usage)
+  * [Advanced Bash Scripting](#Fetching-OAS-With-Bash-Script)
+* Pipeline
+  * [Dockerfile-Standard](#Dockerfile)
+  * [Dockerfile-Fetch](#Dockerfile-Fetch)
+
 ## Descriptions
 This repository contains an example of using Docker Containers to facilitate running the [Kong Portal CLI Tool](https://github.com/Kong/kong-portal-cli) to deploy a Kong Developer Portal with OpenAPI Specifications. This repo contains multiple ways to host, gather and deploy the OAS files, each Dockerfile correlates to a Github Action which will be similarly named.
 
 Please read the documentation in the [Kong Portal CLI Tool](https://github.com/Kong/kong-portal-cli) to understand appropriate environment variables and the importance of the cli.conf.yaml file.
+
+## Standard Portal API Usage
+![Standard Portal API Usage](drawio/Standard.png?raw=true)
+
+## Fetching OAS With Bash Script
+![Fetching OAS With Bash Script](drawio/Fetch.png?raw=true)
 
 ## Dockerfile
 Each Dockerfile in this repo contains many similarities like:
