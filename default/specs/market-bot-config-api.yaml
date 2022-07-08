@@ -6,7 +6,7 @@ info:
   description: >-
     API built on @spring-projects used for controlling MarketBotConfigs for
     Listings/Sales
-  version: 1.0.0-oas3
+  version: 1.0.1-oas3
   title: market-bot-config-api
 security:
   - ApiKeyAuth: []
